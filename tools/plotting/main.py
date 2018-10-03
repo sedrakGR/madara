@@ -2,6 +2,7 @@ from data_reader_interface import DataReaderFromFile
 import data_reader_interface as dri
 import visualizer as vis
 
+from time import sleep
 
 filename = ("/media/sedrak/OS/SET/projects/"
                          "SAFE_reliability_rc_v3.4.0__pikachu-16-0004__2018-08-16-09-47-39.stk")
@@ -24,13 +25,20 @@ for key in keys:
         count = 0
         while True:
             value, has_next = reader.get_current_value(key)
-
-            x.append(value.retrieve_index(0).to_string())
-            y.append(value.retrieve_index(1).to_string())
-            z.append(value.retrieve_index(2).to_string())
-            u.append(value.retrieve_index(3).to_string())
-            v.append(value.retrieve_index(4).to_string())
-            w.append(value.retrieve_index(5).to_string())
+            # if (value.to_string() == last_value):
+            #     sleep(1)
+            #     if not(has_next):
+            #         break
+            #     continue
+            print value.retrieve_index(0).to_double()
+            print value.retrieve_index(1).to_double()
+            print value.retrieve_index(2).to_double()
+            x.append(value.retrieve_index(0).to_double())
+            y.append(value.retrieve_index(1).to_double())
+            z.append(value.retrieve_index(2).to_double())
+            u.append(value.retrieve_index(3).to_double())
+            v.append(value.retrieve_index(4).to_double())
+            w.append(value.retrieve_index(5).to_double())
 
             if not(value.to_string() == last_value):
                 last_value = value.to_string()
@@ -40,5 +48,6 @@ for key in keys:
         # print(value.retrieve_index(0).to_string(), value.retrieve_index(1).to_string(), value.retrieve_index(2).to_string(),
             # value.retrieve_index(3).to_string(), value.retrieve_index(4).to_string(), value.retrieve_index(5).to_string())
 
-
-vis.visualizer(x, y, z, u, v, w)
+            #vis.plt.draw()
+            vis.visualizer(x, y, z, u, v, w)
+vis.plt.show()

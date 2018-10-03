@@ -15,13 +15,16 @@ from mpl_toolkits.mplot3d import Axes3D
 
 cnt = 1
 pause = False
+
+#plt.plot([1,2,3])
 def visualizer(x, y, z, u, v, w):
-
-
-    # matplotlib customizations and set subplots
     style.use('fivethirtyeight')
-    fig = plt.figure()
-    ax1 = fig.add_subplot(111, projection = '3d')
+    fig = plt.figure("gago")
+    ax1 = fig.add_subplot(111, projection='3d')
+    # matplotlib customizations and set subplots
+
+
+
     # ax2 = fig.add_subplot(2,1,2)
 
     # instantiate and shorten KB and KR
@@ -62,21 +65,22 @@ def visualizer(x, y, z, u, v, w):
     def checkEqual3(lst):
         return lst[1:] == lst[:-1]  
 
-    def animate(i):
-        global cnt
-        # Plot the 3d
-        if not pause: 
-            ax1.clear()
-            x1 = x[:cnt]
-            y1 = y[:cnt]     
-            Axes3D.plot(ax1, x1, y1, z)
-            u, v, w1 = ori_conv(w[cnt])
-            ax1.quiver(x[cnt], y[cnt], z, u, v, w1, length=0.01, normalize=True)
-            ax1.set_title(prefix1)
-            ax1.set_xlabel('X')
-            ax1.set_ylabel('Y')
-            ax1.set_zlabel('Altitude (m)')
-            cnt = cnt + 1 
+    # def animate(i):
+    #     global cnt
+    #     # Plot the 3d
+    #     if not pause:
+    #         ax1.clear()
+    #         x1 = x[:cnt]
+    #         y1 = y[:cnt]
+    #         Axes3D.plot(ax1, x1, y1, z)
+    #         if cnt < len(w):
+    #             u, v, w1 = ori_conv(w[cnt])
+    #             ax1.quiver(x[cnt], y[cnt], z, u, v, w1, length=0.01, normalize=True)
+    #             ax1.set_title(prefix1)
+    #             ax1.set_xlabel('X')
+    #             ax1.set_ylabel('Y')
+    #             ax1.set_zlabel('Altitude (m)')
+    #             cnt = cnt + 1
             # print x[cnt] , y[cnt]  
 
     # Get KRs and make into list
@@ -119,9 +123,17 @@ def visualizer(x, y, z, u, v, w):
 
     # Animate plot 
     # Args: interval = interval to plot (ms)
-    ani = animation.FuncAnimation(fig, animate, interval=10)
+    #ani = animation.FuncAnimation(fig, animate, interval=10)
+    plt.plot(x, y, z)
     axpause = plt.axes([0.7, 0.05, 0.1, 0.075])
-    bpause = Button(axpause,'Pause/Play')
-    bpause.on_clicked(onClick)
+    #bpause = Button(axpause,'Pause/Play')
+    #bpause.on_clicked(onClick)
 
-    return plt.show()
+    #plt.draw()
+    # plt.ion()
+
+    #plt.legend()
+    plt.pause(0.00001)
+    #plt.show(0.1)
+    #plt.show()
+    #plt.clearplot()
