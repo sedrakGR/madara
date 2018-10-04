@@ -106,7 +106,7 @@ class DataReaderFromFile(DataReaderInterface):
 
     # in case already at the end, just return last value as current
     if current_index == last_index:
-      print "already reached to the last value of simulation"
+      #print "already reached to the last value of simulation"
       return values_list[last_index], False
 
     # last argument is the relative current time
